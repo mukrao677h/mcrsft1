@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Search</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(Screenshot\ \(1\).png); /* Replace with your image URL */
+            background-size: cover; /* Ensure the image covers the entire screen */
+            background-position: center;
+            background-attachment: fixed; /* Keeps the background fixed while scrolling */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white; /* White text for better visibility on dark background */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 2); /* Slightly transparent background */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+            margin-top: 25%;
+            margin-left: -55%;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1em;
+            width: 70%;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #5e20f0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3f00d1;
+        }
+
+        .employee-details {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .employee-details p {
+            margin: 5px 0;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter The Employee ID</h1>
+
+        <!-- Search Bar -->
+        <input type="text" id="employeeId" placeholder="Enter Employee ID" />
+        <button onclick="searchEmployee()">Search</button>
+
+        <!-- Employee Details -->
+        <div id="employeeDetails" class="employee-details">
+            <!-- Details will appear here after search -->
+        </div>
+    </div>
+
+    <script>
+        // Define employee data in an array
+        const employees = [
+            {
+                id: "M1274",
+                name: "Albert Smith",
+                department: "Security Department",
+                position: "Executive Head",
+                email: "albertsmith7012@microsoft.com",
+                phone: "+1-888-388-1274",
+            },
+            {
+                id: "M1011",
+                name: "Gary Wilson",
+                department: "Security Department",
+                position: "Executive Head",
+                email: "garywilson@microsoft.com",
+                phone: "+1-888-388-1274",
+            },
+            {
+                id: "M1179",
+                name: "Grace Adams",
+                department: "Security Department",
+                position: "Executive Head",
+                email: "graceadams@microsoft.com",
+                phone: "+1-888-388-1274",
+            },
+            {
+                id: "M1045",
+                name: "John Doe",
+                department: "HR",
+                position: "Manager",
+                email: "john.doe@example.com",
+                phone: "123-456-7890",
+            },
+            {
+                id: "M1375",
+                name: "Jane Smith",
+                department: "Engineering",
+                position: "Software Engineer",
+                email: "jane.smith@example.com",
+                phone: "987-654-3210",
+            },
+            {
+                id: "M1348",
+                name: "Samuel Green",
+                department: "Marketing",
+                position: "Marketing Head",
+                email: "samuel.green@example.com",
+                phone: "555-555-5555",
+            },
+            
+            // Add more employee details as needed
+        ];
+
+        // Function to search and display employee details
+        function searchEmployee() {
+            const employeeId = document.getElementById("employeeId").value.trim().toUpperCase();
+            const employeeDetailsDiv = document.getElementById("employeeDetails");
+            
+            // Clear previous search results
+            employeeDetailsDiv.innerHTML = "";
+
+            // Find employee by ID
+            const employee = employees.find(emp => emp.id === employeeId);
+
+            if (employee) {
+                // Show employee details
+                employeeDetailsDiv.style.display = "block";
+                employeeDetailsDiv.innerHTML = `
+                    <p><strong>Employee ID:</strong> ${employee.id}</p>
+                    <p><strong>Name:</strong> ${employee.name}</p>
+                    <p><strong>Department:</strong> ${employee.department}</p>
+                    <p><strong>Position:</strong> ${employee.position}</p>
+                    <p><strong>Email:</strong> ${employee.email}</p>
+                    <p><strong>Phone:</strong> ${employee.phone}</p>
+                `;
+            } else {
+                // Display message if employee is not found
+                employeeDetailsDiv.style.display = "block";
+                employeeDetailsDiv.innerHTML = "<p>Employee not found. Please check the ID.</p>";
+            }
+        }
+    </script>
+</body>
+</html>
